@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input class="btn" type="submit" name="" id="" value="Login">
+    </form>
+    
+    <p>Dont have an account?</p>
+    <a class="back" href="{% url 'todo:register' %}">Register</a>
+{% endblock %}

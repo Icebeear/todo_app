@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Create task {% endblock %}
+
+{% block content %}
+    <a  class="back" href="{% url 'todo:index' %}"> <- back</a>
+    <form action="" method="POST">
+        <div class="create">
+            {% csrf_token %}
+            <p>Title:</p>
+            {{form.title}}
+            <p>Description:</p>
+            {{form.description}}
+            <p>Complete: {{form.complete}}</p>
+            <input class="btn" type="submit" name="" id="" value="Submit">
+        </div>
+    </form>
+{% endblock %}

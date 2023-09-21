@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} Delete task {% endblock %}
+
+{% block content %}
+    <a  class="back" href="{% url 'todo:index' %}"> <- back</a>
+    <h1>Are you want to delete this task?</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p class="delete" >Title:</p>
+        <p>{{task.title}}</p>
+        <p class="delete">Description:</p>
+        <p>{{task.description}}</p>
+        <input class="btn" type="submit" value="Delete">
+    </form>
+{% endblock %}

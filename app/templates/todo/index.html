@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %} Tasks {% endblock %}
+
+{% block content %}
+
+    <div class="header">
+        <p>Hello {{request.user}}</p>
+        <h4>You have {{count}} incomplete tasks</h4>
+        <a href="{% url 'todo:logout'  %}">Logout</a>
+    </div>
+    
+    <div class="search">
+        <form action="" method="GET">
+            <input type="text" name="search-area" value="{{search_input}}" class="field">
+            <input type="submit" value="Search" class="btn">
+        </form>
+
+        <a href="{% url 'todo:create' %}"><i class="fa-solid fa-plus"></i></a>
+    </div>
+    
+
+        <div class="tasks">
+            {% for task in tasks %}
+                <hr>
+                {% if task.complete %}
+                <div class="task-box">
+                    <div class="task-title">
+                        <a href=""><i class="fa-solid fa-circle"></i></a>
+                        <a class="task-complete" href="{% url 'todo:edit' task.id %}"></i> {{task.title}}</a>
+                    </div>
+                    <a href="{% url 'todo:delete' task.id %}"><i class="fa-solid fa-x"></i></a>
+                </div>
+                
+                {% else %}
+                <div class="task-box">
+                    <div class="task-title">
+                        <a href=""><i class="fa-regular fa-circle"></i></a>
+                        <a class="task-incomplete" href="{% url 'todo:edit' task.id %}">{{task.title}}</a>
+                    </div>
+                    <a href="{% url 'todo:delete' task.id %}"><i class="fa-solid fa-x"></i></a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+{% endblock %}
